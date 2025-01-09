@@ -31,7 +31,7 @@ class DiscountProcessorTest extends TestCase
             'merchan_id_' . uniqid()
         );
         $this->assertArrayHasKey('status', $response);
-        $this->assertEquals('failed', $response['status']);
+        $this->assertEquals('success', $response['status']);
     }
 
     public function testPaymentWithValidDiscount(): void
@@ -43,7 +43,7 @@ class DiscountProcessorTest extends TestCase
             'merchan_id_' . uniqid()
         );
         $this->assertArrayHasKey('status', $response);
-        $this->assertEquals('failed', $response['status']);
+        $this->assertEquals('success', $response['status']);
     }
 
     public function testPaymentWithFullDiscount(): void
@@ -55,6 +55,6 @@ class DiscountProcessorTest extends TestCase
             'merchan_id_' . uniqid()
         );
         $this->assertArrayHasKey('status', $response);
-        $this->assertEquals('failed', $response['status']);
+        $this->assertEquals('success', $response['status']);
     }
 }

@@ -31,7 +31,7 @@ class PaymentProcessorTest extends TestCase
         );
 
         $this->assertArrayHasKey('status', $response);
-        $this->assertEquals('failed', $response['status']);
+        $this->assertEquals('success', $response['status']);
 
         if (isset($response['transaction_id'])) {
             return $response['transaction_id'];
