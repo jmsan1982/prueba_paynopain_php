@@ -27,11 +27,16 @@ class HttpClient
             'Content-Type' => 'application/json',
         ];
 
+        $options = ['headers' => $headers];
+
+        if ($method === 'GET') {
+            $endpoint .= '?' . http_build_query($data);
+        } else {
+            $options['json'] = $data;
+        }
+
         try {
-            $response = $this->client->request($method, $endpoint, [
-                'headers' => $headers,
-                'json' => $data,
-            ]);
+            $response = $this->client->request($method, $endpoint, $options);
 
             return json_decode($response->getBody()->getContents(), true);
         } catch (ClientException $e) {

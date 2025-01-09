@@ -37,11 +37,11 @@ class RefundProcessor
 
             $transactionDetails = $this->statusChecker->getStatus($email, $transactionId);
 
-            if (!isset($transactionDetails['remaining_amount'])) {
+            if (!isset($transactionDetails['amount'])) {
                 throw new Exception('The specified transaction could not be found.');
             }
 
-            $remainingAmount = (int) $transactionDetails['remaining_amount'];
+            $remainingAmount = (int) $transactionDetails['amount'];
 
             if ($amount > $remainingAmount) {
                 throw new Exception('The amount cannot be greater than the transaction amount.');
@@ -50,6 +50,6 @@ class RefundProcessor
             $data['amount'] = $amount;
         }
 
-        return $this->httpClient->request('POST', 'refund', $data);
+        return $this->httpClient->request('POST', '/refund', $data);
     }
 }
